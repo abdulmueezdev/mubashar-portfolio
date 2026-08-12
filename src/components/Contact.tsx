@@ -55,21 +55,12 @@ export const Contact = () => {
 
   const containerVariants: any = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
+    show: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.2 } }
   };
 
   const itemVariants: any = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: 'spring', stiffness: 300, damping: 24 },
-    },
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
   };
 
   return (
@@ -86,7 +77,7 @@ export const Contact = () => {
       <motion.div
         variants={containerVariants}
         initial="hidden"
-        whileInView="visible"
+        whileInView="show"
         viewport={{ once: true, margin: '-100px' }}
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
       >
@@ -97,7 +88,7 @@ export const Contact = () => {
             href={method.href}
             target={method.external ? '_blank' : undefined}
             rel={method.external ? 'noopener noreferrer' : undefined}
-            className="group flex items-center p-6 bg-[#141414] rounded-2xl border border-white/5 hover:border-[var(--color-primary)]/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(255,87,34,0.1)]"
+            className="group flex items-center p-6 bg-[#141414] rounded-2xl border border-white/5 hover:border-[var(--color-primary)]/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgba(232,93,4,0.3)]"
           >
             <div className="w-14 h-14 rounded-full bg-[#1A1A1A] flex items-center justify-center mr-6 group-hover:scale-110 transition-transform duration-300">
               {method.icon}

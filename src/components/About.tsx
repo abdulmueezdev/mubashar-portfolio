@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { motion } from 'framer-motion';
 import { SITE_DATA } from '../data/siteData';
 import { GraduationCap, BookOpen, Calendar, Award } from 'lucide-react';
 
@@ -7,7 +7,14 @@ export const About: React.FC = () => {
   const { education } = SITE_DATA;
 
   return (
-    <section id="about" className="py-24 px-8 border-t border-[var(--color-border)] bg-[var(--color-background)]">
+    <motion.section 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      id="about" 
+      className="py-24 px-8 border-t border-[var(--color-border)] bg-[var(--color-background)]"
+    >
       <div className="max-w-7xl mx-auto">
         
         <div className="flex items-center gap-4 mb-12">
@@ -75,6 +82,6 @@ export const About: React.FC = () => {
 
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };

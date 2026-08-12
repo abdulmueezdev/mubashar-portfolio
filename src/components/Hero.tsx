@@ -10,8 +10,9 @@ export const Hero: React.FC = () => {
         
         {/* Main Hero Card */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           className="md:col-span-2 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[2.5rem] p-10 flex flex-col justify-center relative overflow-hidden"
         >
           <div className="absolute top-0 right-0 p-8 text-[var(--color-text-secondary)] flex items-center gap-2 text-sm font-mono">

@@ -6,18 +6,18 @@ const container: Variants = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15
+      staggerChildren: 0.12,
+      delayChildren: 0.2
     }
   }
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, y: 30, filter: 'blur(10px)' },
+  hidden: { opacity: 0, y: 20 },
   show: { 
     opacity: 1, 
     y: 0, 
-    filter: 'blur(0px)',
-    transition: { type: "spring", stiffness: 100, damping: 12 } 
+    transition: { duration: 0.6 } 
   }
 };
 
@@ -56,7 +56,7 @@ export const Skills = () => {
           {/* Languages - Spans 4 cols on large */}
           <motion.div 
             variants={item}
-            className="md:col-span-3 lg:col-span-4 bg-[#18181B] border border-[#3F3F46] p-8 rounded-sm hover:border-[#2563EB] hover:shadow-[0_0_20px_rgba(37,99,235,0.15)] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
+            className="md:col-span-3 lg:col-span-4 bg-[#18181B] border border-[#3F3F46] p-8 rounded-sm hover:border-[#E85D04] hover:shadow-[0_0_20px_rgba(232,93,4,0.15)] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#2563EB] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <h3 className="text-xl font-bold mb-6 font-mono text-[#2563EB] uppercase tracking-widest flex items-center gap-3">
@@ -76,7 +76,7 @@ export const Skills = () => {
           {/* Spreadsheet - Spans 4 cols */}
           <motion.div 
             variants={item}
-            className="md:col-span-3 lg:col-span-4 bg-[#18181B] border border-[#3F3F46] p-8 rounded-sm hover:border-[#2563EB] hover:shadow-[0_0_20px_rgba(37,99,235,0.15)] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
+            className="md:col-span-3 lg:col-span-4 bg-[#18181B] border border-[#3F3F46] p-8 rounded-sm hover:border-[#E85D04] hover:shadow-[0_0_20px_rgba(232,93,4,0.15)] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#2563EB] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <h3 className="text-xl font-bold mb-6 font-mono text-[#2563EB] uppercase tracking-widest flex items-center gap-3">
@@ -96,7 +96,7 @@ export const Skills = () => {
           {/* Tools - Spans 5 cols */}
           <motion.div 
             variants={item}
-            className="md:col-span-4 lg:col-span-5 bg-[#18181B] border border-[#3F3F46] p-8 rounded-sm hover:border-[#2563EB] hover:shadow-[0_0_20px_rgba(37,99,235,0.15)] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
+            className="md:col-span-4 lg:col-span-5 bg-[#18181B] border border-[#3F3F46] p-8 rounded-sm hover:border-[#E85D04] hover:shadow-[0_0_20px_rgba(232,93,4,0.15)] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#2563EB] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <h3 className="text-xl font-bold mb-6 font-mono text-[#2563EB] uppercase tracking-widest flex items-center gap-3">
@@ -115,7 +115,7 @@ export const Skills = () => {
           {/* Other - Spans 3 cols */}
           <motion.div 
             variants={item}
-            className="md:col-span-2 lg:col-span-3 bg-[#18181B] border border-[#3F3F46] p-8 rounded-sm hover:border-[#2563EB] hover:shadow-[0_0_20px_rgba(37,99,235,0.15)] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
+            className="md:col-span-2 lg:col-span-3 bg-[#18181B] border border-[#3F3F46] p-8 rounded-sm hover:border-[#E85D04] hover:shadow-[0_0_20px_rgba(232,93,4,0.15)] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#2563EB] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <h3 className="text-xl font-bold mb-6 font-mono text-[#2563EB] uppercase tracking-widest flex items-center gap-3">

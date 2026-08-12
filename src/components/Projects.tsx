@@ -13,6 +13,15 @@ export const Projects = () => {
   const barsContainerRef = useRef<HTMLDivElement>(null);
   const dashboardRef = useRef<HTMLDivElement>(null);
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.2 } }
+  };
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   useEffect(() => {
     if (barsContainerRef.current) {
       const bars = barsContainerRef.current.querySelectorAll('.chart-bar');
@@ -59,14 +68,19 @@ export const Projects = () => {
         Portfolio Projects
       </motion.h2>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+
+      <motion.div 
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+      >
         {/* Project 1 */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="bg-[var(--color-surface)] p-6 rounded-2xl border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-colors duration-300 relative overflow-hidden"
+          variants={item}
+          className="bg-[var(--color-surface)] p-6 rounded-2xl border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_10px_30px_-10px_rgba(232,93,4,0.3)] relative overflow-hidden"
         >
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#E85D04] opacity-5 rounded-bl-full pointer-events-none" />
           
@@ -122,11 +136,8 @@ export const Projects = () => {
 
         {/* Project 2 */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="bg-[var(--color-surface)] p-6 rounded-2xl border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-colors duration-300 relative overflow-hidden flex flex-col h-full justify-between"
+          variants={item}
+          className="bg-[var(--color-surface)] p-6 rounded-2xl border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_10px_30px_-10px_rgba(232,93,4,0.3)] relative overflow-hidden flex flex-col h-full justify-between"
         >
           <div>
             <div className="absolute top-0 right-0 w-32 h-32 bg-[#E85D04] opacity-5 rounded-bl-full pointer-events-none" />
@@ -185,7 +196,7 @@ export const Projects = () => {
             ))}
           </ul>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };
