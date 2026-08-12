@@ -1,9 +1,52 @@
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SITE_DATA } from '../data/siteData';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const Projects = () => {
   const project1 = SITE_DATA.projects[0];
   const project2 = SITE_DATA.projects[1];
+
+  const barsContainerRef = useRef<HTMLDivElement>(null);
+  const dashboardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (barsContainerRef.current) {
+      const bars = barsContainerRef.current.querySelectorAll('.chart-bar');
+      gsap.fromTo(
+        bars,
+        { scaleY: 0, transformOrigin: 'bottom' },
+        {
+          scaleY: 1,
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: barsContainerRef.current,
+            start: "top 80%",
+          },
+        }
+      );
+    }
+
+    if (dashboardRef.current) {
+      gsap.fromTo(
+        dashboardRef.current,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: dashboardRef.current,
+            start: "top 80%",
+          },
+        }
+      );
+    }
+  }, []);
 
   return (
     <section id="projects" className="py-20 px-4 md:px-8 max-w-6xl mx-auto">
@@ -50,12 +93,12 @@ export const Projects = () => {
             <div className="absolute top-2 left-3 text-xs text-gray-500 font-mono">WPM Over Time</div>
             <div className="absolute top-2 right-3 text-xs text-[#E85D04] font-mono">plt.show()</div>
             
-            <div className="flex items-end justify-between h-32 px-2 pb-1 border-b border-l border-gray-700">
+            <div ref={barsContainerRef} className="flex items-end justify-between h-32 px-2 pb-1 border-b border-l border-gray-700">
               {/* Mock bars */}
               {[45, 52, 60, 58, 65, 72, 70, 78, 80, 84].map((height, i) => (
                 <div key={i} className="w-full mx-0.5 group-hover:opacity-80 transition-opacity">
                   <div 
-                    className="w-full bg-[#E85D04] rounded-t-sm" 
+                    className="w-full bg-[#E85D04] rounded-t-sm chart-bar" 
                     style={{ height: `${height}%`, opacity: 0.5 + (height / 170) }}
                   />
                 </div>
@@ -107,7 +150,7 @@ export const Projects = () => {
             </div>
 
             {/* Mock Dashboard Preview */}
-            <div className="mb-6 bg-[#141414] rounded-lg p-4 h-48 border border-gray-800 relative flex flex-col gap-3 group cursor-crosshair">
+            <div ref={dashboardRef} className="mb-6 bg-[#141414] rounded-lg p-4 h-48 border border-gray-800 relative flex flex-col gap-3 group cursor-crosshair">
               <div className="flex justify-between items-center border-b border-[#262626] pb-2">
                 <span className="text-xs text-[#A3A3A3] font-sans">Country Sales</span>
                 <span className="text-xs text-[#A3A3A3] font-sans">Customer Metrics</span>
