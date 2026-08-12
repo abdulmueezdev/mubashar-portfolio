@@ -104,6 +104,31 @@ export const Contact = () => {
           </motion.a>
         ))}
       </motion.div>
+
+      <motion.div
+        variants={itemVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <form action="https://formsubmit.co/mubasharmurtaza008@gmail.com" method="POST"
+          className="bg-[#141414] border border-[#262626] rounded-xl p-6 mt-8">
+          <input type="hidden" name="_subject" value="New Portfolio Message" />
+          <input type="hidden" name="_captcha" value="false" />
+          <div className="grid gap-4">
+            <input type="text" name="name" placeholder="Your Name" required
+              className="bg-[#0A0A0A] border border-[#262626] text-[#F5F5F5] rounded-lg px-4 py-3 w-full focus:border-[#E85D04] focus:outline-none" />
+            <input type="email" name="email" placeholder="Your Email" required
+              className="bg-[#0A0A0A] border border-[#262626] text-[#F5F5F5] rounded-lg px-4 py-3 w-full focus:border-[#E85D04] focus:outline-none" />
+            <textarea name="message" placeholder="Your Message" rows={4} required
+              className="bg-[#0A0A0A] border border-[#262626] text-[#F5F5F5] rounded-lg px-4 py-3 w-full focus:border-[#E85D04] focus:outline-none resize-none"></textarea>
+            <button type="submit"
+              className="bg-[#E85D04] hover:bg-[#F48C06] text-white font-medium px-6 py-3 rounded-lg transition-colors">
+              Send Message
+            </button>
+          </div>
+        </form>
+      </motion.div>
     </section>
   );
 };
