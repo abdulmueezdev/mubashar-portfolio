@@ -3,6 +3,7 @@ import Lenis from 'lenis';
 import { Nav } from './components/Nav';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
+import { Skills } from './components/Skills';
 import './index.css';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
       <main>
         <Hero />
         <About />
+        <Skills />
       </main>
     </div>
   );

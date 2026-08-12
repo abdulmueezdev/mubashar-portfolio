@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+
 import { SITE_DATA } from '../data/siteData';
 import { GraduationCap, BookOpen, Calendar, Award } from 'lucide-react';
 
