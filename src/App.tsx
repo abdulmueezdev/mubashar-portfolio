@@ -3,7 +3,7 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Nav } from './components/Nav';
-import { Hero } from './components/Hero';
+import { BlackHoleHeroSectionDemo } from './components/BlackHoleHeroSectionDemo';
 import { About } from './components/About';
 import { Skills } from './components/Skills';
 import { Projects } from './components/Projects';
@@ -41,7 +41,7 @@ function App() {
     <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-text-primary)]">
       <Nav />
       <main>
-        <Hero />
+        <BlackHoleHeroSectionDemo />
         <About />
         <Skills />
         <Projects />
