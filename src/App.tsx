@@ -1,4 +1,5 @@
 import { useEffect, lazy, Suspense } from 'react';
+import { motion, useScroll, useSpring, useTransform, useVelocity } from 'framer-motion';
 import { BlackHoleHeroSectionDemo } from './components/BlackHoleHeroSectionDemo';
 import './index.css';
 
@@ -10,6 +11,16 @@ const Projects = lazy(() => import('./components/Projects').then(m => ({ default
 const Contact = lazy(() => import('./components/Contact').then(m => ({ default: m.Contact })));
 
 function App() {
+  const { scrollYProgress, scrollY } = useScroll();
+  
+  // Progress bar
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+
+  // Velocity skew
+  const scrollVelocity = useVelocity(scrollY);
+  const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
+  const skewY = useTransform(smoothVelocity, [-1000, 1000], [-3, 3], { clamp: false });
+
   useEffect(() => {
     if (window.innerWidth < 768) return;
     
@@ -57,11 +68,17 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-text-primary)]">
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[2px] bg-[#E85D04] origin-left z-[9999]"
+        style={{ scaleX }}
+      />
       <Suspense fallback={<div className="h-20" />}>
         <Nav />
       </Suspense>
       <main>
         <BlackHoleHeroSectionDemo />
+      </main>
+      <motion.main className="velocity-skew-container" style={{ skewY }}>
         <Suspense fallback={<div className="min-h-screen" />}>
           <About />
         </Suspense>
@@ -74,10 +91,10 @@ function App() {
         <Suspense fallback={<div className="min-h-screen" />}>
           <Contact />
         </Suspense>
-      </main>
-      <Suspense fallback={<div className="h-40" />}>
-        <Footer />
-      </Suspense>
+        <Suspense fallback={<div className="h-40" />}>
+          <Footer />
+        </Suspense>
+      </motion.main>
     </div>
   );
 }

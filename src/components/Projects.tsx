@@ -18,8 +18,8 @@ export const Projects = () => {
     show: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.2 } }
   };
   const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    hidden: { opacity: 0, y: 20, rotateX: 10 },
+    show: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.6 } }
   };
 
   useEffect(() => {

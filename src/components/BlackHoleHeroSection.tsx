@@ -633,8 +633,8 @@ export function BlackHoleHeroSection({
   glow = 1,
   exposure = 0.9,
   vignette = 0.28,
-  steps = 150,
-  resolution = 0.5,
+  steps = 80,
+  resolution = 0.4,
   maxDpr = 1.0,
   focus = [0.72, 0.46],
   scrim = "none",
@@ -646,6 +646,12 @@ export function BlackHoleHeroSection({
 }: BlackHoleHeroSectionProps) {
   const hostRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [showCanvas, setShowCanvas] = React.useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setShowCanvas(true), 2000);
+    return () => clearTimeout(t);
+  }, []);
 
   const props = useRef({
     distance, elevation, azimuth, orbitSpeed, roll, fov, diskInner, diskOuter,
@@ -716,7 +722,7 @@ export function BlackHoleHeroSection({
       : "";
     const software = /swiftshader|llvmpipe|softpipe|software|microsoft basic/i.test(renderer);
     if (software) {
-      props.current.steps = 80;
+      props.current.steps = 50;
       props.current.resolution = 0.3;
       props.current.maxDpr = 1.0;
     }
@@ -1197,9 +1203,14 @@ export function BlackHoleHeroSection({
     <div
       ref={hostRef}
       className={`relative isolate h-full w-full overflow-hidden bg-black ${className}`}
+      style={{ background: "radial-gradient(ellipse at 70% 50%, #1a0a00 0%, #0a0a0a 70%)" }}
       {...rest}
     >
-      <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 h-full w-full" />
+      <canvas 
+        ref={canvasRef} 
+        aria-hidden="true" 
+        className={`absolute inset-0 h-full w-full transition-opacity duration-1000 ${showCanvas ? 'opacity-100' : 'opacity-0'}`} 
+      />
       {children ? <div className="relative z-10 h-full w-full">{children}</div> : null}
     </div>
   );

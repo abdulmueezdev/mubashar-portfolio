@@ -59,8 +59,8 @@ export const Contact = () => {
   };
 
   const itemVariants: any = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    hidden: { opacity: 0, y: 20, filter: 'blur(4px)' },
+    show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.6 } }
   };
 
   return (
