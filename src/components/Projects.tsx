@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SITE_DATA } from '../data/siteData';
@@ -13,13 +14,13 @@ export const Projects = () => {
   const barsContainerRef = useRef<HTMLDivElement>(null);
   const dashboardRef = useRef<HTMLDivElement>(null);
 
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     show: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.2 } }
   };
-  const item = {
-    hidden: { opacity: 0, y: 20, rotateX: 10 },
-    show: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.6 } }
+  const item: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] } }
   };
 
   useEffect(() => {
@@ -60,9 +61,10 @@ export const Projects = () => {
   return (
     <section id="projects" className="py-20 px-4 md:px-8 max-w-6xl mx-auto">
       <motion.h2 
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
         className="text-3xl md:text-4xl font-bold mb-12 text-[var(--color-primary)]"
       >
         Portfolio Projects

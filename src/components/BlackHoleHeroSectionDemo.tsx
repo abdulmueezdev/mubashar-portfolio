@@ -75,13 +75,21 @@ export function BlackHoleHeroSectionDemo() {
       
         <div className="flex flex-wrap gap-4">
           <a
-            href="#portfolio"
+            href="#projects"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
           >
             View Portfolio
           </a>
           <a
             href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="rounded-full border border-white/20 px-6 py-3 text-sm text-white/80 transition hover:border-white/40 hover:text-white flex items-center gap-2"
           >
             Contact Me

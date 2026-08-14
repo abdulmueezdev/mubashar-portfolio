@@ -13,12 +13,11 @@ const container: Variants = {
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, scale: 0.9, y: 20 },
+  hidden: { opacity: 0, y: 40 },
   show: { 
     opacity: 1, 
-    scale: 1,
     y: 0, 
-    transition: { duration: 0.6 } 
+    transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] } 
   }
 };
 
@@ -32,10 +31,10 @@ export const Skills = () => {
       
       <div className="max-w-7xl mx-auto relative z-20">
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
           className="mb-16"
         >
           <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-widest mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-[#3F3F46] [text-shadow:0_0_15px_rgba(37,99,235,0.4)]">
