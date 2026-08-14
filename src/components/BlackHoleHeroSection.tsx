@@ -633,9 +633,9 @@ export function BlackHoleHeroSection({
   glow = 1,
   exposure = 0.9,
   vignette = 0.28,
-  steps = 300,
-  resolution = 0.7,
-  maxDpr = 1.75,
+  steps = 150,
+  resolution = 0.5,
+  maxDpr = 1.0,
   focus = [0.72, 0.46],
   scrim = "none",
   scrimStrength = 0.9,
@@ -668,6 +668,12 @@ export function BlackHoleHeroSection({
     const reduced =
       typeof window.matchMedia === "function" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduced) {
+      canvas.style.display = "none";
+      host.style.background = "radial-gradient(ellipse at 70% 50%, #1a0a00 0%, #0a0a0a 70%)";
+      return;
+    }
 
     const opts: WebGLContextAttributes = {
       alpha: false,
@@ -709,6 +715,11 @@ export function BlackHoleHeroSection({
       ? String(gl.getParameter((dbg as any).UNMASKED_RENDERER_WEBGL) || "")
       : "";
     const software = /swiftshader|llvmpipe|softpipe|software|microsoft basic/i.test(renderer);
+    if (software) {
+      props.current.steps = 80;
+      props.current.resolution = 0.3;
+      props.current.maxDpr = 1.0;
+    }
     const isGL2 = typeof WebGL2RenderingContext !== "undefined" &&
       gl instanceof WebGL2RenderingContext;
 
@@ -914,6 +925,7 @@ export function BlackHoleHeroSection({
     let running = true;
     let visible = true;
     let raf = 0;
+    let lowFpsFrames = 0;
 
     function pass(prog: Prog, target: Target | null) {
       gl!.useProgram(prog.program);
@@ -1088,9 +1100,23 @@ export function BlackHoleHeroSection({
       if (!running) return;
       raf = requestAnimationFrame(tick);
       if (!visible) { lastFrame = now; return; }
-      const dt = lastFrame ? Math.min(0.05, (now - lastFrame) / 1000) : 0;
+      const dt = lastFrame ? (now - lastFrame) / 1000 : 0;
       lastFrame = now;
-      if (!props.current.paused && !reduced) clock += dt;
+
+      if (dt > 0.033) {
+        lowFpsFrames++;
+        if (lowFpsFrames > 90) {
+          props.current.steps = Math.max(30, Math.floor(props.current.steps / 2));
+          props.current.resolution = Math.max(0.1, props.current.resolution - 0.1);
+          resize();
+          lowFpsFrames = -999999;
+        }
+      } else {
+        lowFpsFrames = 0;
+      }
+
+      const simDt = Math.min(0.05, dt);
+      if (!props.current.paused && !reduced) clock += simDt;
       render(clock);
     }
 

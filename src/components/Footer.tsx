@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Mail } from 'lucide-react';
 
 const Linkedin = ({ size = 24 }: { size?: number }) => (
   <svg
@@ -31,14 +32,18 @@ export const Footer = () => {
         M.M.M.
       </div>
       
-      <div className="flex gap-4">
+      <div className="flex items-center justify-center gap-6 mt-4">
         <a 
           href="https://www.linkedin.com/in/muhammad-mubashar-murtaza" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="text-[#A3A3A3] hover:text-[#F5F5F5] transition-colors"
+          className="text-[#A3A3A3] hover:text-[#E85D04] transition-colors"
         >
-          <Linkedin size={24} />
+          <Linkedin size={20} />
+        </a>
+        <a href="mailto:mubasharmurtaza008@gmail.com"
+           className="text-[#A3A3A3] hover:text-[#E85D04] transition-colors">
+          <Mail size={20} />
         </a>
       </div>
 
